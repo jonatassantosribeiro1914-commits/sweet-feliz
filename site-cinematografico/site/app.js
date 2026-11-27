@@ -79,6 +79,21 @@
       carregar(0, minha);
       if (reduzir) { pronto(); return; }
       let k = 0;
+      // Os quadros extras (só deixam o movimento mais liso) esperam o 1º gesto ou 8 s:
+      // assim não disputam o processador com o carregamento da página no celular.
+      let liberado = false;
+      const esperarUso = (seguir) => {
+        const eventos = ["scroll", "touchstart", "pointerdown", "keydown", "wheel"];
+        let feito = false;
+        const ir = () => {
+          if (feito) return;
+          feito = liberado = true;
+          eventos.forEach((ev) => removeEventListener(ev, ir));
+          seguir();
+        };
+        eventos.forEach((ev) => addEventListener(ev, ir, { passive: true, once: true }));
+        setTimeout(ir, 8000);
+      };
       const ocioso = window.requestIdleCallback ? (f) => requestIdleCallback(f, { timeout: 500 }) : (f) => setTimeout(f, 120);
       const lote = () => {
         if (minha !== geracao) return; // trocou de conjunto (girou o tablet/redimensionou)
@@ -86,7 +101,8 @@
         for (let n = 0; n < (primeira ? 6 : 3) && k < fila.length; n++) carregar(fila[k++], minha);
         if (k >= fila.length) return;
         if (k < essenciais) setTimeout(lote, 30);
-        else ocioso(lote); // o resto em pedaços pequenos, sem travar o celular
+        else if (!liberado) esperarUso(() => ocioso(lote)); // o resto só depois que a pessoa começa a rolar
+        else ocioso(lote); // em pedaços pequenos, sem travar o celular
       };
       lote();
     };
