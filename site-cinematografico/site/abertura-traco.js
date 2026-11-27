@@ -9,8 +9,8 @@
   if (!svg) return;
   const reduzir = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const DURACAO = 3500;   // ms do "vídeo" inteiro
-  const ESPERA = 150;     // ms depois que a tela de entrada some
+  const DURACAO = 3000;   // ms do "vídeo" inteiro
+  const ESPERA = 0;       // começa enquanto a tela de entrada ainda se dissolve
 
   const animados = [...svg.querySelectorAll('[data-de]')].map((el) => ({
     el, de: parseFloat(el.dataset.de), ate: parseFloat(el.dataset.ate), ultimo: '',
