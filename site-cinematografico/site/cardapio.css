@@ -34,14 +34,15 @@
 @media (min-width: 760px) { .grade { grid-template-columns: repeat(3, 1fr); gap: 40px 28px; } }
 @media (min-width: 1080px) { .grade { grid-template-columns: repeat(4, 1fr); } }
 
-.card { animation: flutuar 3.5s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -.8s); }
+/* cada card tem o seu ritmo (--dur, --fase, --alt, --dir), definido no cardapio.js */
+.card { animation: flutuar var(--dur, 3.5s) ease-in-out infinite; animation-delay: var(--fase, 0s); }
 .card-destaque { animation-name: flutuar-largo; }
 /* flutuar: sobe 9 px com um leve balanço (meio grau para cada lado), cada card num momento do ciclo */
 @keyframes flutuar {
   0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-  25% { transform: translate3d(1.5px, -5px, 0) rotate(-.5deg); }
-  50% { transform: translate3d(0, -9px, 0) rotate(0deg); }
-  75% { transform: translate3d(-1.5px, -5px, 0) rotate(.5deg); }
+  25% { transform: translate3d(calc(var(--dir, 1) * 1.5px), calc(var(--alt, 9px) * -.55), 0) rotate(calc(var(--dir, 1) * -.5deg)); }
+  50% { transform: translate3d(0, calc(var(--alt, 9px) * -1), 0) rotate(0deg); }
+  75% { transform: translate3d(calc(var(--dir, 1) * -1.5px), calc(var(--alt, 9px) * -.55), 0) rotate(calc(var(--dir, 1) * .5deg)); }
 }
 @keyframes flutuar-largo { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -8px, 0); } }
 .card-botao {
