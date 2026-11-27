@@ -3,7 +3,7 @@ window.SITE = {
 
   // Endereço final do site, sem barra no fim (ex.: https://sweetfeliz.com.br).
   // Deixe vazio enquanto não houver domínio; preencha antes de publicar.
-  url: "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz",
+  url: "https://sweet-feliz.vercel.app",
 
   whatsapp: {
     numero: "5511979538491", // só dígitos, com código do país

@@ -3,7 +3,7 @@ import re
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
-URL = "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/"
+URL = "https://sweet-feliz.vercel.app/"
 
 
 def ler_cardapio():
