@@ -10,12 +10,6 @@ window.SITE = {
     mensagem: "Olá, Sweet Feliz! Vim pelo site e quero saber mais sobre as encomendas.",
   },
 
-  // Sem formulário: os pedidos vão pelo WhatsApp (sacolinha do cardápio).
-  contato: null,
-
-  // A abertura agora é um desenho em traço (abertura-traco.js), sem quadros de vídeo.
-  frames: null,
-
   // Rolagem macia (Lenis) no computador. false = rolagem nativa do navegador.
   rolagemSuave: true,
 

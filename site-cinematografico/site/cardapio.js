@@ -69,8 +69,8 @@ function avisar(msg) {
 const grade = $('#grade');
 let filtro = 'todas';
 
-function cardProduto(p, i) {
-  return `<li class="card" style="--i:${i}">
+function cardProduto(p) {
+  return `<li class="card">
     <button class="card-botao" type="button" data-abrir="${p.id}">
       <img class="card-foto" src="${foto(p.id)}" alt="" loading="lazy" decoding="async" width="400" height="500">
       <span class="card-nome">${p.nome}</span>
@@ -78,8 +78,8 @@ function cardProduto(p, i) {
       <span class="preco">${brl(p.preco)}</span>
     </button></li>`;
 }
-function cardBolo(i) {
-  return `<li class="card card-destaque" style="--i:${i}">
+function cardBolo() {
+  return `<li class="card card-destaque">
     <button class="card-botao" type="button" data-abrir="bolo-natalino">
       <span class="card-fotos">${BOLO.fotos.map((f) => `<img class="card-foto" src="${foto(f)}" alt="" loading="lazy" decoding="async" width="400" height="500">`).join('')}</span>
       <span class="card-info">
@@ -90,8 +90,8 @@ function cardBolo(i) {
       </span>
     </button></li>`;
 }
-function cardTopo(n, i) {
-  return `<li class="card card-topo" style="--i:${i}">
+function cardTopo(n) {
+  return `<li class="card card-topo">
     <button class="card-botao" type="button" data-abrir="bolo-natalino" data-topo="${n}">
       <img class="card-foto" src="${fotoTopo(n)}" alt="Topo de bolo de Natal nº ${Number(n)}" loading="lazy" decoding="async" width="320" height="320">
       <span class="card-nome">Topo nº ${Number(n)}</span>
@@ -99,13 +99,15 @@ function cardTopo(n, i) {
 }
 
 function render() {
-  let html = '';
-  let i = 0;
-  const lista = (cat) => PRODUTOS.filter((p) => p.cat === cat).map((p) => cardProduto(p, i++)).join('');
-  if (filtro === 'todas') html = cardBolo(i++) + lista('travessas') + lista('tacas');
-  if (filtro === 'travessas' || filtro === 'tacas') html = lista(filtro);
-  if (filtro === 'bolo') html = cardBolo(i++) + TOPOS.map((n) => cardTopo(n, i++)).join('');
-  if (filtro === 'topos') html = TOPOS.map((n) => cardTopo(n, i++)).join('');
+  const lista = (cat) => PRODUTOS.filter((p) => p.cat === cat).map(cardProduto).join('');
+  const topos = () => TOPOS.map(cardTopo).join('');
+  const html = {
+    todas: () => cardBolo() + lista('travessas') + lista('tacas'),
+    travessas: () => lista('travessas'),
+    tacas: () => lista('tacas'),
+    bolo: () => cardBolo() + topos(),
+    topos,
+  }[filtro]();
   grade.innerHTML = html;
   ritmos();
 }
@@ -408,15 +410,10 @@ pintarSacola();
   let naAbertura = !!cine;
   const atualizar = () => botao.classList.toggle('visivel', !naAbertura || totalItens() > 0);
   if (cine) {
-    new IntersectionObserver(([e]) => {
-      // ainda na abertura enquanto o fim da .cine estiver abaixo do meio da tela
-      naAbertura = e.isIntersecting && e.boundingClientRect.bottom > innerHeight * 0.5;
-      atualizar();
-    }, { threshold: [0, 0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 1] }).observe(cine);
-    addEventListener('scroll', () => {
-      naAbertura = cine.getBoundingClientRect().bottom > innerHeight * 0.5;
-      atualizar();
-    }, { passive: true });
+    // "na abertura" = o fim da abertura ainda está abaixo do meio da tela: a área observada
+    // é só a metade de baixo da tela (margem de -50% no topo)
+    new IntersectionObserver(([e]) => { naAbertura = e.isIntersecting; atualizar(); },
+      { rootMargin: '-50% 0px 0px 0px' }).observe(cine);
   }
   const pintarOriginal = pintarSacola;
   pintarSacola = function () { pintarOriginal(); atualizar(); };

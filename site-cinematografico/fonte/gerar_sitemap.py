@@ -2,15 +2,15 @@
 Uso (na pasta site-cinematografico):  python fonte/gerar_sitemap.py
 """
 import datetime
-import re
+import sys
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-URL = "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/"
-raiz = Path(__file__).resolve().parent.parent
-js = (raiz / "site/cardapio.js").read_text(encoding="utf-8")
-fotos = [(pid, nome) for pid, nome in re.findall(r"\{ id: '([^']+)', cat: '\w+', nome: '([^']+)'", js)]
-fotos += [("bolo-natalino-1", "Bolo Natalino"), ("bolo-natalino-2", "Bolo Natalino")]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from cardapio_dados import RAIZ as raiz, URL, ler_cardapio  # noqa: E402
+
+produtos, bolo = ler_cardapio()
+fotos = [(p["id"], p["nome"]) for p in produtos] + [(f, "Bolo Natalino") for f in bolo["fotos"]]
 hoje = datetime.date.today().isoformat()
 imgs = "\n".join(
     f"    <image:image><image:loc>{URL}assets/cardapio/produtos/{pid}.webp</image:loc>"

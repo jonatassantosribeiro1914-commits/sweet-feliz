@@ -13,26 +13,24 @@
   const ESPERA = 150;     // ms depois que a tela de entrada some
 
   const animados = [...svg.querySelectorAll('[data-de]')].map((el) => ({
-    el, de: parseFloat(el.dataset.de), ate: parseFloat(el.dataset.ate),
+    el, de: parseFloat(el.dataset.de), ate: parseFloat(el.dataset.ate), ultimo: '',
   }));
   const escrita = svg.querySelector('#escrita-rect');
   const ESCRITA = { de: 0.30, ate: 0.80, x0: 80, x1: 520 }; // o nome é escrito da esquerda para a direita
-  const momentos = [...cine.querySelectorAll('.momento')];
   const barra = cine.querySelector('.cine-progresso');
 
   const limitar = (v) => Math.min(1, Math.max(0, v));
   const suave = (v) => v * v * (3 - 2 * v);
 
+  escrita.setAttribute('x', ESCRITA.x0);
   function pintar(p) {
-    for (const a of animados) a.el.style.setProperty('--t', suave(limitar((p - a.de) / (a.ate - a.de))).toFixed(4));
-    const e = limitar((p - ESCRITA.de) / (ESCRITA.ate - ESCRITA.de));
-    escrita.setAttribute('x', ESCRITA.x0);
-    escrita.setAttribute('width', ((ESCRITA.x1 - ESCRITA.x0) * e).toFixed(1));
-    for (const m of momentos) {
-      const de = parseFloat(m.dataset.de || 0), ate = parseFloat(m.dataset.ate || 1);
-      m.classList.toggle('ativo', p >= de && (p < ate || (ate >= 1 && p >= 1)));
+    // só escreve quando o valor muda: traços que ainda não começaram ou já terminaram ficam quietos
+    for (const a of animados) {
+      const t = suave(limitar((p - a.de) / (a.ate - a.de))).toFixed(4);
+      if (t !== a.ultimo) { a.el.style.setProperty('--t', t); a.ultimo = t; }
     }
-    cine.classList.toggle('andou', p > 0.02);
+    const e = limitar((p - ESCRITA.de) / (ESCRITA.ate - ESCRITA.de));
+    escrita.setAttribute('width', ((ESCRITA.x1 - ESCRITA.x0) * e).toFixed(1));
     cine.classList.toggle('fim', p >= 1);
     if (barra) barra.style.setProperty('--p', p.toFixed(4));
   }

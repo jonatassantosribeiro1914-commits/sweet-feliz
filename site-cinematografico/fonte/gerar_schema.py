@@ -11,26 +11,18 @@ Substitui o bloco <script type="application/ld+json"> do site/index.html.
 import html
 import json
 import re
+import sys
 from pathlib import Path
 
-URL = "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from cardapio_dados import RAIZ as raiz, URL, ler_cardapio
+
 PRAZO = "2026-12-18"  # "encomendas até 18/12"
-raiz = Path(__file__).resolve().parent.parent
-js = (raiz / "site/cardapio.js").read_text(encoding="utf-8")
 pagina_arq = raiz / "site/index.html"
 pagina = pagina_arq.read_text(encoding="utf-8")
-
-# ---- cardápio (lido do cardapio.js) -------------------------------------------
-produtos = []
-for m in re.finditer(r"\{ id: '([^']+)', cat: '(\w+)', nome: '([^']+)', preco: (\d+),\s*desc: '([^']+)'(?:,\s*extra: \{ rotulo: '([^']+)', preco: (\d+) \})?", js):
-    pid, cat, nome, preco, desc, extra_rot, extra_preco = m.groups()
-    produtos.append(dict(id=pid, cat=cat, nome=nome, preco=int(preco), desc=desc, extra=(extra_rot, int(extra_preco)) if extra_rot else None))
-assert len(produtos) == 12, f"esperava 12 sobremesas, achei {len(produtos)}"
-
-bolo_desc = re.search(r"nome: 'Bolo Natalino',\s*desc: '([^']+)'", js).group(1)
-tamanhos = re.findall(r"\{ id: '([PMG])', serve: '([^']+)', preco: (\d+) \}", js)
-recheios = re.search(r"recheios: \[([^\]]+)\]", js).group(1).replace("'", "").split(", ")
-assert len(tamanhos) == 3
+produtos, _bolo = ler_cardapio()
+bolo_desc, tamanhos, recheios = _bolo["desc"], _bolo["tamanhos"], _bolo["recheios"]
 
 def foto(pid):
     return f"{URL}assets/cardapio/produtos/{pid}.webp"

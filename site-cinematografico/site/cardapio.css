@@ -11,7 +11,7 @@
 }
 
 /* ---------- Seção ---------- */
-.cardapio { align-content: start; }
+.cardapio { align-content: start; padding-top: 8vh; }
 .cardapio .painel--cabecalho p { margin: 0; }
 .cardapio .chips {
   width: 100%; max-width: var(--largura);
@@ -20,7 +20,7 @@
 .cardapio .chips::-webkit-scrollbar { display: none; }
 @media (min-width: 760px) { .cardapio .chips { flex-wrap: wrap; overflow: visible; } }
 .chip {
-  flex: none; min-height: 42px; padding: 0 18px; font: 500 14px/1 var(--fonte-texto); letter-spacing: .03em; color: var(--texto);
+  flex: none; min-height: 44px; padding: 0 18px; font: 500 14px/1 var(--fonte-texto); letter-spacing: .03em; color: var(--texto);
   border: 1px solid var(--c-linha); border-radius: 999px; background: var(--c-branco);
   cursor: pointer; transition: background-color .2s, border-color .2s;
 }
@@ -34,6 +34,7 @@
 @media (min-width: 760px) { .grade { grid-template-columns: repeat(3, 1fr); gap: 40px 28px; } }
 @media (min-width: 1080px) { .grade { grid-template-columns: repeat(4, 1fr); } }
 
+.card { position: relative; }
 /* Flutuar: dois movimentos contínuos e separados (sobe-e-desce + balanço), sem variáveis dentro
    dos keyframes, para a placa de vídeo animar liso. O ritmo de cada card (--onda, --dur, --fase,
    --sentido) é definido no cardapio.js: vizinhos em fases opostas, pares com durações diferentes. */
@@ -243,14 +244,9 @@ html:not(.js) .sacola-botao { display: none; }
 }
 .toast.ver { opacity: 1; transform: translate(-50%, 0); }
 
-@media (prefers-reduced-motion: reduce) {
-  .card { animation: none; }
-}
-.cardapio { padding-top: 8vh; }
 
 /* ══ Natal no hover: Papai Noel no trenó dando voltas no produto (natal-hover.js) ══
    Silhueta de autoria da Sweet Feliz, separada em 2 peças alinhadas: trenó+Noel e rena. */
-.card { position: relative; }
 .card.noel-ativo { z-index: 6; }
 .card.noel-ativo .card-botao { box-shadow: 0 0 0 3px rgba(217, 164, 65, .35), var(--c-sombra-alta); }
 .noel-camada { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .35s; }
@@ -303,7 +299,6 @@ html:not(.js) .sacola-botao { display: none; }
   .sacola-botao svg { width: 22px; height: 22px; }
   .sacola-contador { min-width: 20px; height: 20px; font-size: 11px; top: -4px; right: -4px; }
 }
-.chip { min-height: 44px; }
 
 /* Aviso de encomendas encerradas (aparece na sacolinha depois do prazo) */
 .gaveta-encerrado { margin: 0; padding: 10px 12px; border-radius: 10px; background: #F6E3E3; color: var(--c-rosa-escuro) !important; font-size: 14px; font-weight: 600; text-align: center; }
