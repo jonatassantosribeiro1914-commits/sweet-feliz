@@ -395,3 +395,6 @@ body, .secao {
   .rodape { padding-bottom: max(132px, env(safe-area-inset-bottom)); }
   .menu a { min-height: 44px; display: inline-flex; align-items: center; }
 }
+
+/* Celular: abertura mais curta (cerca de 1 a 2 passadas de dedo). No computador vale o --altura do index.html. */
+@media (max-width: 760px) { .cine { --altura: 170vh !important; } }
