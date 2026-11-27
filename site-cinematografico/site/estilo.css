@@ -396,8 +396,9 @@ body, .secao {
   .menu a { min-height: 44px; display: inline-flex; align-items: center; }
 }
 
-/* Celular: abertura mais curta (cerca de 1 a 2 passadas de dedo). No computador vale o --altura do index.html. */
-@media (max-width: 760px) { .cine { --altura: 170vh !important; } }
+/* A abertura toca sozinha (abertura-traco.js): ocupa uma tela só, sem trecho de rolagem. */
+.cine { min-height: 100vh; }
+.cine .cine-dica { display: none; }
 
 /* ══ Abertura em traço (abertura-traco.js): a linha desenha o bolo e escreve o nome ══ */
 .desenho {
