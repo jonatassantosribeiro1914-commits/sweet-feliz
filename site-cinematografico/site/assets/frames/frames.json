@@ -1,0 +1,16 @@
+{
+  "total": 160,
+  "formatos": [
+    "webp"
+  ],
+  "desktop": {
+    "largura": 1920,
+    "altura": 1080,
+    "padrao": "assets/frames/desktop/f_{n}"
+  },
+  "mobile": {
+    "largura": 720,
+    "altura": 1280,
+    "padrao": "assets/frames/mobile/f_{n}"
+  }
+}

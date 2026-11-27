@@ -1,0 +1,19 @@
+# Cópias de segurança locais (ficam só no computador)
+backups/
+
+# Configurações locais do editor/assistente
+.claude/
+
+# Vídeos e quadros de conferência gerados (pesados; refazer com fonte/animacao.py)
+site-cinematografico/fonte/*.mp4
+site-cinematografico/fonte/check_*.jpg
+site-cinematografico/fonte/log_*.txt
+
+# Blocos não usados do modelo da skill
+site-cinematografico/blocos/
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+__pycache__/

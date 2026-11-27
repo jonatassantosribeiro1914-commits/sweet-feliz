@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="claro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sweet Feliz · Bolos artesanais e cardápio de Natal no Campo Limpo</title>
+  <meta name="description" content="Bolos e doces artesanais no Campo Limpo, Zona Sul de São Paulo. Cardápio de Natal com travessas, taças, pudim, pavê e bolo natalino. Encomendas até 18/12 pelo WhatsApp.">
+  <meta property="og:title" content="Sweet Feliz · Bolos artesanais e cardápio de Natal">
+  <meta property="og:description" content="Doces de Natal feitos à mão no Campo Limpo. Encomendas até 18/12.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <!-- Redes sociais só leem endereço completo: antes de publicar troque por https://SEU-DOMINIO/assets/og.jpg -->
+  <meta property="og:image" content="assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FAF3EC">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add("js")</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Dancing+Script:wght@700&family=Figtree:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Dancing+Script:wght@700&family=Figtree:wght@400;500;600&display=swap"></noscript>
+
+  <link rel="preload" as="image" href="assets/logo-entrada.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/frames/desktop/f_0001.webp" media="(min-width: 761px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/frames/mobile/f_0001.webp" media="(max-width: 760px)" fetchpriority="high">
+  <link rel="stylesheet" href="estilo.css">
+  <link rel="stylesheet" href="cardapio.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "Sweet Feliz",
+    "description": "Bolos e doces artesanais no Campo Limpo, Zona Sul de São Paulo. Cardápio de Natal com encomendas até 18/12.",
+    "telephone": "+5511979538491",
+    "servesCuisine": "Confeitaria",
+    "paymentAccepted": "Pix, dinheiro, cartão de crédito",
+    "sameAs": ["https://www.instagram.com/sweet_feliz/"],
+    "address": { "@type": "PostalAddress", "addressLocality": "São Paulo", "addressRegion": "SP", "streetAddress": "Campo Limpo, Zona Sul", "addressCountry": "BR" }
+  }
+  </script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<div class="carregador" aria-hidden="true">
+  <img class="carregador-logo" src="assets/logo-entrada.webp" alt="" width="220" height="220" fetchpriority="high">
+  <span class="carregador-barra"><i></i></span>
+</div>
+
+<header class="topo">
+  <a href="#inicio" class="marca" aria-label="Sweet Feliz, voltar ao início">
+    <img src="assets/logo-pequena.webp" alt="" class="marca-logo" width="44" height="44">
+    <span class="marca-texto">Sweet Feliz</span>
+  </a>
+  <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+    <span></span><span></span>
+  </button>
+  <nav class="menu" id="menu" aria-label="Seções">
+    <a href="#cardapio">Cardápio de Natal</a>
+    <a href="#encomendar">Como encomendar</a>
+    <a href="#duvidas">Dúvidas</a>
+    <a href="#contato" class="menu-cta">Fale conosco</a>
+  </nav>
+</header>
+
+<main id="conteudo">
+
+  <!-- ABERTURA: a rolagem toca a animação do bolo se montando -->
+  <section id="inicio" class="cine" style="--altura: 250vh" aria-label="Abertura">
+    <div class="cine-palco">
+      <picture class="cine-poster">
+        <source media="(max-width: 760px)" srcset="assets/frames/mobile/f_0001.webp">
+        <img src="assets/frames/desktop/f_0001.webp" alt="" fetchpriority="high">
+      </picture>
+      <canvas class="cine-canvas" aria-hidden="true"></canvas>
+      <div class="cine-vinheta"></div>
+
+      <div class="momento ativo" data-de="0" data-ate="0.28">
+        <div class="painel painel--vidro">
+          <h1 class="titulo-abertura">Doces de Natal feitos à mão no Campo Limpo</h1>
+          <p class="apoio">Sweet Feliz, bolos artesanais. Encomendas do cardápio de Natal até 18/12.</p>
+        </div>
+      </div>
+      <div class="momento momento--direita" data-de="0.36" data-ate="0.64">
+        <div class="painel painel--vidro">
+          <p class="destaque">Camada por camada: brownie, creme de Ninho, morango fresco e ganache cremosa.</p>
+        </div>
+      </div>
+      <div class="momento momento--centro" data-de="0.72" data-ate="1">
+        <div class="painel painel--vidro">
+          <p class="destaque">Monte a sua ceia doce e mande o pedido pelo WhatsApp.</p>
+          <a href="#cardapio" class="botao">Ver o cardápio</a>
+        </div>
+      </div>
+
+      <div class="cine-progresso" aria-hidden="true"><i></i></div>
+      <div class="cine-dica" aria-hidden="true"><span></span>role</div>
+    </div>
+  </section>
+
+  <!-- 01 CARDÁPIO DE NATAL (catálogo com sacolinha), logo depois da abertura -->
+  <section id="cardapio" class="secao secao--larga cardapio" aria-labelledby="t-cardapio">
+    <div class="painel painel--cabecalho revelar">
+      <span class="rotulo">01</span>
+      <h2 id="t-cardapio">Cardápio de Natal</h2>
+      <p>Toque numa delícia para ver os detalhes e colocar na sacolinha. Encomendas até 18/12.</p>
+    </div>
+
+    <div class="chips" role="group" aria-label="Filtrar cardápio">
+      <button class="chip" type="button" data-filtro="todas" aria-pressed="true">Todas</button>
+      <button class="chip" type="button" data-filtro="travessas" aria-pressed="false">Travessas e tortas</button>
+      <button class="chip" type="button" data-filtro="tacas" aria-pressed="false">Taças</button>
+      <button class="chip" type="button" data-filtro="bolo" aria-pressed="false">Bolo natalino</button>
+      <button class="chip" type="button" data-filtro="topos" aria-pressed="false">Topos de bolo</button>
+    </div>
+
+    <ul class="grade" id="grade" aria-live="polite"></ul>
+    <p class="painel aviso-fotos">As fotos são ilustrativas. Por ser tudo artesanal, a decoração pode variar um pouquinho.</p>
+  </section>
+
+  <!-- 02 COMO ENCOMENDAR -->
+  <section id="encomendar" class="secao" aria-labelledby="t-encomendar">
+    <img class="arte arte--esquerda" src="assets/img/processo.webp" alt="" loading="lazy" decoding="async">
+    <div class="secao-grade secao-grade--direita">
+      <div class="painel revelar">
+        <span class="rotulo">02</span>
+        <h2 id="t-encomendar">Como encomendar</h2>
+        <ol class="passos">
+          <li><strong>Monte a sua sacolinha</strong><span>Escolha os doces, o tamanho do bolo e o topo. O total aparece na hora.</span></li>
+          <li><strong>Envie pelo WhatsApp e pague o sinal</strong><span>O pedido chega pronto para a Sweet Feliz e é confirmado com 50% do valor, por Pix, dinheiro ou cartão.</span></li>
+          <li><strong>Retire no dia combinado</strong><span>23/12 até 22h ou 24/12 até 12h. O restante é pago na retirada, antes do horário marcado.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 DÚVIDAS -->
+  <section id="duvidas" class="secao secao--larga" aria-labelledby="t-duvidas">
+    <div class="painel painel--cabecalho revelar" style="max-width: 860px">
+      <span class="rotulo">03</span>
+      <h2 id="t-duvidas">Dúvidas sobre as encomendas</h2>
+      <div class="faq">
+        <details><summary>Vocês entregam?</summary><p>Não, é somente retirada. Se preferir motorista por aplicativo, ele precisa ser chamado por você. A Sweet Feliz não se responsabiliza por entregas feitas pelo aplicativo.</p></details>
+        <details><summary>Até quando posso encomendar?</summary><p>Até 18/12, ou antes, se as vagas acabarem. As encomendas de Natal são limitadas.</p></details>
+        <details><summary>Posso pagar no cartão?</summary><p>Pode. Enviamos um link de pagamento com o acréscimo da taxa da maquininha. Também aceitamos Pix e dinheiro.</p></details>
+        <details><summary>E se eu precisar cancelar?</summary><p>O sinal de 50% não é reembolsado em caso de cancelamento. Sem o sinal, o pedido fica apenas como orçamento.</p></details>
+        <details><summary>Como conservo a sobremesa até a ceia?</summary><p>Mantenha na geladeira até a hora de servir.</p></details>
+        <details><summary>O doce vem igual à foto?</summary><p>As fotos são ilustrativas. Como a produção é toda artesanal, a decoração pode ter pequenas variações.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 CONTATO (só WhatsApp e Instagram) -->
+  <section id="contato" class="secao secao--contato" aria-labelledby="t-contato">
+    <img class="arte arte--fundo arte--suave" src="assets/img/contato.webp" alt="" loading="lazy" decoding="async">
+    <div class="painel painel--form revelar">
+      <span class="rotulo">04</span>
+      <h2 id="t-contato">Fale com a Sweet Feliz</h2>
+      <p>Pedido do cardápio, bolo personalizado para aniversário ou qualquer dúvida: chame no WhatsApp. As novidades saem primeiro no Instagram.</p>
+      <div class="contato-acoes">
+        <a class="botao" href="https://wa.me/5511979538491" target="_blank" rel="noopener" data-whats-link>Chamar no WhatsApp</a>
+        <a class="botao botao--linha" href="https://www.instagram.com/sweet_feliz/" target="_blank" rel="noopener">@sweet_feliz no Instagram</a>
+      </div>
+      <p class="contato-local">Campo Limpo, Zona Sul de São Paulo · somente retirada</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="painel rodape-painel">
+    <span class="rodape-marca"><img src="assets/logo-pequena.webp" alt="" width="40" height="40" loading="lazy"> <span class="marca-texto">Sweet Feliz</span></span>
+    <span>Bolos artesanais · Campo Limpo, Zona Sul de SP</span>
+    <span>© <span data-ano>2026</span> Sweet Feliz</span>
+  </div>
+</footer>
+
+<a class="whats" href="https://wa.me/5511979538491" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3Zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4a10.4 10.4 0 0 1-1.6-5.6C5.5 9.8 10.2 5.2 16 5.2s10.5 4.6 10.5 10.4S21.8 26.1 16 26.1Zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.7 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/></svg>
+</a>
+
+<!-- Sacolinha flutuante (fica acima do botão do WhatsApp) -->
+<button class="sacola-botao" id="abrir-sacola" type="button" aria-label="Abrir sacolinha, 0 itens">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+  <span class="sacola-contador" id="contador" hidden>0</span>
+</button>
+
+<dialog class="modal" id="modal" aria-labelledby="modal-titulo" data-lenis-prevent>
+  <form method="dialog" class="modal-fechar-form">
+    <button class="fechar" type="submit" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </form>
+  <div class="modal-corpo" id="modal-corpo"></div>
+</dialog>
+
+<dialog class="gaveta" id="gaveta" aria-labelledby="gaveta-titulo" data-lenis-prevent>
+  <div class="gaveta-topo">
+    <p class="gaveta-titulo" id="gaveta-titulo">Sua sacolinha</p>
+    <form method="dialog"><button class="fechar" type="submit" aria-label="Fechar sacolinha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></form>
+  </div>
+  <div class="gaveta-itens" id="itens"></div>
+  <form class="gaveta-form" id="form-pedido">
+    <div class="totais" id="totais"></div>
+    <label><span>Seu nome</span>
+      <input name="nome" autocomplete="name" required>
+    </label>
+    <fieldset>
+      <legend>Dia da retirada</legend>
+      <label class="opcao"><input type="radio" name="dia" value="23/12 (até 22h)" required> 23/12 · até 22h</label>
+      <label class="opcao"><input type="radio" name="dia" value="24/12 (até 12h)"> 24/12 · até 12h</label>
+    </fieldset>
+    <label><span>Horário aproximado <span class="opcional">(opcional)</span></span>
+      <input name="hora" type="time">
+    </label>
+    <label><span>Observação <span class="opcional">(opcional)</span></span>
+      <textarea name="obs" rows="2"></textarea>
+    </label>
+    <button class="cbotao cbotao-primario cbotao-largo" type="submit" id="enviar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.3-4.3A8.5 8.5 0 1 1 20.5 11.8z"/></svg>
+      Enviar pedido no WhatsApp
+    </button>
+    <p class="gaveta-nota">O pedido é confirmado depois do sinal de 50%.</p>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="config.js" defer></script>
+<script src="app.js" defer></script>
+<script src="cardapio.js" defer></script>
+<script src="natal-hover.js" defer></script>
+</body>
+</html>
