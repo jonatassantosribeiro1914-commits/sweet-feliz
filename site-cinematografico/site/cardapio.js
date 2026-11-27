@@ -112,17 +112,18 @@ function render() {
 
 /* Cada card flutua no seu ritmo: os vizinhos da mesma linha ficam em fases opostas
  * (um sobe enquanto o outro desce) e cada par tem uma duração um pouco diferente
- * (3,2 a 3,9 s), com pequenas variações de altura (8 a 10 px) e do lado do balanço. */
+ * (3,2 a 3,9 s), com pequenas variações de altura (8 a 10 px) e do lado do balanço.
+ * As ondas são animações prontas (flutuar-y8/9/10 no CSS) para rodar lisas na placa de vídeo. */
 function ritmos() {
   let j = 0;
   for (const c of grade.children) {
-    if (c.classList.contains('card-destaque')) { c.style.setProperty('--dur', '3.6s'); continue; }
+    if (c.classList.contains('card-destaque')) { c.style.setProperty('--dur', '3.6s'); c.style.setProperty('--onda', 'flutuar-y8'); continue; }
     const par = Math.floor(j / 2);
     const dur = 3.2 + ((par * 5) % 8) / 10;
     c.style.setProperty('--dur', dur.toFixed(2) + 's');
     c.style.setProperty('--fase', (-(j % 2) * dur / 2 - par * 1.13).toFixed(2) + 's');
-    c.style.setProperty('--alt', 8 + ((j * 2) % 3) + 'px');
-    c.style.setProperty('--dir', j % 3 === 1 ? -1 : 1);
+    c.style.setProperty('--onda', 'flutuar-y' + (8 + ((j * 2) % 3)));
+    c.style.setProperty('--sentido', j % 3 === 1 ? 'alternate-reverse' : 'alternate');
     j++;
   }
 }

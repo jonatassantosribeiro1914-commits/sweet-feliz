@@ -34,17 +34,23 @@
 @media (min-width: 760px) { .grade { grid-template-columns: repeat(3, 1fr); gap: 40px 28px; } }
 @media (min-width: 1080px) { .grade { grid-template-columns: repeat(4, 1fr); } }
 
-/* cada card tem o seu ritmo (--dur, --fase, --alt, --dir), definido no cardapio.js */
-.card { animation: flutuar var(--dur, 3.5s) ease-in-out infinite; animation-delay: var(--fase, 0s); }
-.card-destaque { animation-name: flutuar-largo; }
-/* flutuar: sobe 9 px com um leve balanço (meio grau para cada lado), cada card num momento do ciclo */
-@keyframes flutuar {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-  25% { transform: translate3d(calc(var(--dir, 1) * 1.5px), calc(var(--alt, 9px) * -.55), 0) rotate(calc(var(--dir, 1) * -.5deg)); }
-  50% { transform: translate3d(0, calc(var(--alt, 9px) * -1), 0) rotate(0deg); }
-  75% { transform: translate3d(calc(var(--dir, 1) * -1.5px), calc(var(--alt, 9px) * -.55), 0) rotate(calc(var(--dir, 1) * .5deg)); }
+/* Flutuar: dois movimentos contínuos e separados (sobe-e-desce + balanço), sem variáveis dentro
+   dos keyframes, para a placa de vídeo animar liso. O ritmo de cada card (--onda, --dur, --fase,
+   --sentido) é definido no cardapio.js: vizinhos em fases opostas, pares com durações diferentes. */
+.card {
+  animation-name: var(--onda, flutuar-y9), flutuar-giro;
+  animation-duration: var(--dur, 3.5s), calc(var(--dur, 3.5s) * 1.7);
+  animation-delay: var(--fase, 0s), var(--fase, 0s);
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  animation-direction: normal, var(--sentido, alternate);
+  will-change: translate, rotate;
 }
-@keyframes flutuar-largo { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -8px, 0); } }
+.card-destaque { animation-name: flutuar-y8; }
+@keyframes flutuar-y8 { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+@keyframes flutuar-y9 { 0%, 100% { translate: 0 0; } 50% { translate: 0 -9px; } }
+@keyframes flutuar-y10 { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+@keyframes flutuar-giro { from { rotate: -.5deg; } to { rotate: .5deg; } }
 .card-botao {
   width: 100%; height: 100%; padding: 8px 8px 16px; text-align: center; color: var(--texto); font-family: var(--fonte-texto);
   display: flex; flex-direction: column; align-items: center; gap: 6px;
