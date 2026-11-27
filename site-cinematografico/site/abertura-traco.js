@@ -1,6 +1,7 @@
 /* Sweet Feliz · Abertura em traço, tocando sozinha como um vídeo: ao entrar na página,
  * uma linha fina desenha o bolo e escreve "Sweet Feliz"; no final entram as cores
- * (rosa antigo e dourado) e os brilhos. Os 3 textos aparecem em sequência, como legendas.
+ * (rosa antigo e dourado) e os brilhos. Sem textos durante a animação; no fim aparece
+ * só o botão "Ver o cardápio" (classe .fim na abertura).
  * Cada elemento do desenho tem a sua janela no tempo (data-de / data-ate, de 0 a 1). */
 (() => {
   const cine = document.querySelector('.cine');
@@ -8,7 +9,7 @@
   if (!svg) return;
   const reduzir = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const DURACAO = 5500;   // ms do "vídeo" inteiro
+  const DURACAO = 4500;   // ms do "vídeo" inteiro
   const ESPERA = 250;     // ms depois que a tela de entrada some
 
   const animados = [...svg.querySelectorAll('[data-de]')].map((el) => ({
