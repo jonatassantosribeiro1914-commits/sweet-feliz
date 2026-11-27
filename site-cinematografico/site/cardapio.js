@@ -155,14 +155,23 @@ grade.addEventListener('click', (e) => {
 modal.addEventListener('close', () => gatilho && gatilho.focus());
 modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
 
+const ICONE_WHATS = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3Zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4a10.4 10.4 0 0 1-1.6-5.6C5.5 9.8 10.2 5.2 16 5.2s10.5 4.6 10.5 10.4S21.8 26.1 16 26.1Zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.7 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/></svg>';
+
+// conversa no WhatsApp já com o produto (e as escolhas do bolo) escrito
+function linkDuvida(item) {
+  const texto = `Olá! Vi no site e tenho interesse em: *${item.nome}*${item.det ? ` (${item.det})` : ''}, ${brl(item.preco)}. Pode me tirar uma dúvida?`;
+  return WHATSAPP_NUMBER ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}` : WHATSAPP_LINK_CURTO;
+}
+
 function controleQtd() {
-  return `<div class="adicionar">
+  return `<a class="cbotao cbotao-whats cbotao-largo" data-duvida href="${WHATSAPP_LINK_CURTO}" target="_blank" rel="noopener">${ICONE_WHATS} Tirar dúvidas no WhatsApp</a>
+  <div class="adicionar">
     <div class="qtd" role="group" aria-label="Quantidade">
       <button type="button" data-q="-1" aria-label="Diminuir quantidade">−</button>
       <output aria-live="polite">1</output>
       <button type="button" data-q="1" aria-label="Aumentar quantidade">+</button>
     </div>
-    <button class="cbotao cbotao-primario" type="submit">Adicionar · <span data-total></span></button>
+    <button class="cbotao cbotao-secundario" type="submit">Adicionar à sacolinha<span class="total-botao"> · <span data-total></span></span></button>
   </div>`;
 }
 
@@ -240,8 +249,10 @@ function ligarForm(montar) {
   const f = $('#form-item');
   let qtd = 1;
   const atualizar = () => {
+    const item = montar();
     $('output', f).textContent = qtd;
-    $('[data-total]', f).textContent = brl(montar().preco * qtd);
+    $('[data-total]', f).textContent = brl(item.preco * qtd);
+    $('[data-duvida]', f).href = linkDuvida(item);
   };
   f.addEventListener('click', (e) => {
     const b = e.target.closest('[data-q]');

@@ -102,6 +102,12 @@
 .cbotao svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
 .cbotao-primario { background: var(--acento); color: var(--c-branco); box-shadow: var(--c-sombra); }
 .cbotao-primario:hover { background: var(--c-rosa-escuro); transform: translateY(-1px); }
+.cbotao-secundario { background: transparent; color: var(--acento); box-shadow: inset 0 0 0 1.5px var(--acento); }
+.cbotao-secundario:hover { background: color-mix(in srgb, var(--acento) 8%, transparent); }
+/* verde do WhatsApp escurecido para o texto branco ter contraste (≈5:1) */
+.cbotao-whats { background: #13794A; color: #fff; box-shadow: var(--c-sombra); }
+.cbotao-whats:hover { background: #0F6640; transform: translateY(-1px); }
+.cbotao-whats svg { width: 22px; height: 22px; fill: currentColor; stroke: none; }
 .cbotao:disabled { opacity: .45; cursor: not-allowed; transform: none; }
 .cbotao-largo { width: 100%; }
 
@@ -196,7 +202,9 @@ html:not(.js) .sacola-botao { display: none; }
 .qtd { display: flex; align-items: center; border: 1.5px solid var(--c-linha); border-radius: 999px; }
 .qtd button { width: 44px; height: 44px; border: 0; background: none; font-size: 22px; font-weight: 700; cursor: pointer; border-radius: 50%; color: var(--texto); }
 .qtd output { min-width: 24px; text-align: center; font-weight: 700; }
-.adicionar .cbotao { flex: 1; }
+.adicionar .cbotao { flex: 1; padding: 0 18px; white-space: nowrap; }
+/* celular: o total some do botão (o preço já está logo acima) para o texto caber numa linha */
+@media (max-width: 480px) { .total-botao { display: none; } }
 
 /* Gaveta */
 .gaveta {
