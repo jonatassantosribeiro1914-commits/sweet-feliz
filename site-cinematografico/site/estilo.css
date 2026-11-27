@@ -398,3 +398,23 @@ body, .secao {
 
 /* Celular: abertura mais curta (cerca de 1 a 2 passadas de dedo). No computador vale o --altura do index.html. */
 @media (max-width: 760px) { .cine { --altura: 170vh !important; } }
+
+/* ══ Abertura em traço (abertura-traco.js): a linha desenha o bolo e escreve o nome ══ */
+.desenho {
+  position: absolute; left: 50%; top: calc(var(--topo-altura) + 1vh); transform: translateX(-50%);
+  width: min(94vw, 470px); height: auto; overflow: visible; z-index: 1;
+}
+.desenho .traco { stroke-dasharray: 1 1; stroke-dashoffset: calc(1 - var(--t, 0)); opacity: clamp(0, calc(var(--t, 0) * 40), 1); }
+.desenho .cor { opacity: var(--t, 0); }
+.desenho .nome { font-family: var(--fonte-marca); font-weight: 700; font-size: 104px; }
+.desenho .nome-tinta { fill: var(--texto); opacity: var(--t, 0); }
+.desenho .sub { font: 600 15px var(--fonte-texto); letter-spacing: .32em; fill: var(--ouro-texto); }
+.desenho .brilho { opacity: var(--t, 0); transform: scale(var(--t, 0)); transform-box: view-box; }
+@media (min-width: 861px) {
+  .cine .desenho { left: max(4vw, calc(50% - 620px)); top: 54%; transform: translateY(-50%); width: min(44vw, 560px); }
+  .cine .momento, .cine .momento--direita, .cine .momento--centro {
+    left: auto; right: max(var(--gutter), calc(50% - 660px)); bottom: auto; top: 54%;
+    width: min(480px, 38vw); max-width: none; text-align: left; transform: translateY(-50%) translateY(24px);
+  }
+  .cine .momento.ativo { transform: translateY(-50%); }
+}

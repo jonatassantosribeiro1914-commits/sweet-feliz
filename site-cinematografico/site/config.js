@@ -13,8 +13,8 @@ window.SITE = {
   // Sem formulário: os pedidos vão pelo WhatsApp (sacolinha do cardápio).
   contato: null,
 
-  // Linha impressa pelo fatiar_frames.py.
-  frames: { total: 160, formatos: ["webp"], desktop: "assets/frames/desktop/f_{n}", mobile: "assets/frames/mobile/f_{n}" },
+  // A abertura agora é um desenho em traço (abertura-traco.js), sem quadros de vídeo.
+  frames: null,
 
   // Rolagem macia (Lenis) no computador. false = rolagem nativa do navegador.
   rolagemSuave: true,
