@@ -34,8 +34,16 @@
 @media (min-width: 760px) { .grade { grid-template-columns: repeat(3, 1fr); gap: 40px 28px; } }
 @media (min-width: 1080px) { .grade { grid-template-columns: repeat(4, 1fr); } }
 
-.card { animation: flutuar 6s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -1.3s); }
-@keyframes flutuar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.card { animation: flutuar 5s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -1.1s); }
+.card-destaque { animation-name: flutuar-largo; }
+/* flutuar: sobe 9 px com um leve balanço (meio grau para cada lado), cada card num momento do ciclo */
+@keyframes flutuar {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  25% { transform: translate3d(1.5px, -5px, 0) rotate(-.5deg); }
+  50% { transform: translate3d(0, -9px, 0) rotate(0deg); }
+  75% { transform: translate3d(-1.5px, -5px, 0) rotate(.5deg); }
+}
+@keyframes flutuar-largo { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -8px, 0); } }
 .card-botao {
   width: 100%; height: 100%; padding: 8px 8px 16px; text-align: center; color: var(--texto); font-family: var(--fonte-texto);
   display: flex; flex-direction: column; align-items: center; gap: 6px;
