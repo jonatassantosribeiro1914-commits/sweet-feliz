@@ -44,6 +44,9 @@ const BOLO = {
   massas: ['Branca', 'Chocolate'],
   recheios: ['Prestígio', 'Dois amores', 'Brigadeiro', 'Ninho'],
 };
+// Nomes de marca mantêm a maiúscula na sacolinha e na mensagem ("recheio Prestígio", "recheio Ninho")
+const MARCAS = ['Prestígio', 'Ninho'];
+const nomeRecheio = (r) => (MARCAS.includes(r) ? r : r.toLowerCase());
 const TOPOS = Array.from({ length: 14 }, (_, i) => String(i + 1).padStart(2, '0'));
 
 /* ---------- utilidades ---------- */
@@ -219,7 +222,7 @@ function abrirBolo(topoInicial) {
     return {
       chave: ['bolo', t.id, f.massa.value, f.recheio.value, topo].join('|'),
       id: BOLO.id, nome: `Bolo Natalino ${t.id}`, img: foto(BOLO.fotos[0]),
-      det: `Massa ${f.massa.value.toLowerCase()} · recheio ${f.recheio.value.toLowerCase()} · topo nº ${topo}`,
+      det: `Massa ${f.massa.value.toLowerCase()} · recheio ${nomeRecheio(f.recheio.value)} · topo nº ${topo}`,
       preco: t.preco,
     };
   });
@@ -282,7 +285,7 @@ function revalidar(lista) {
       const t = BOLO.tamanhos.find((x) => x.id === tam);
       if (!t || !BOLO.massas.includes(massa) || !BOLO.recheios.includes(recheio) || !TOPOS.includes(String(topo).padStart(2, '0'))) continue;
       ok.push({ chave: it.chave, id: BOLO.id, nome: `Bolo Natalino ${t.id}`, img: foto(BOLO.fotos[0]),
-        det: `Massa ${massa.toLowerCase()} · recheio ${recheio.toLowerCase()} · topo nº ${Number(topo)}`, preco: t.preco, qtd });
+        det: `Massa ${massa.toLowerCase()} · recheio ${nomeRecheio(recheio)} · topo nº ${Number(topo)}`, preco: t.preco, qtd });
       continue;
     }
     const extra = it.chave.endsWith('+extra');
