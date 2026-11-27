@@ -259,7 +259,33 @@ function ligarForm(montar) {
 /* ---------- sacolinha ---------- */
 const CHAVE = 'sweetfeliz-sacola-natal';
 let sacola = [];
-try { sacola = JSON.parse(localStorage.getItem(CHAVE)) || []; } catch { sacola = []; }
+try { sacola = JSON.parse(localStorage.getItem(CHAVE)); } catch { sacola = []; }
+
+// Confere a sacolinha salva com o cardápio atual: descarta o que não existe mais e
+// recalcula nome, preço e foto (se um preço mudar, o pedido sai com o valor novo).
+function revalidar(lista) {
+  if (!Array.isArray(lista)) return [];
+  const ok = [];
+  for (const it of lista) {
+    if (!it || typeof it.chave !== 'string' || !(Number(it.qtd) > 0)) continue;
+    const qtd = Math.min(99, Math.floor(Number(it.qtd)));
+    if (it.chave.startsWith('bolo|')) {
+      const [, tam, massa, recheio, topo] = it.chave.split('|');
+      const t = BOLO.tamanhos.find((x) => x.id === tam);
+      if (!t || !BOLO.massas.includes(massa) || !BOLO.recheios.includes(recheio) || !TOPOS.includes(String(topo).padStart(2, '0'))) continue;
+      ok.push({ chave: it.chave, id: BOLO.id, nome: `Bolo Natalino ${t.id}`, img: foto(BOLO.fotos[0]),
+        det: `Massa ${massa.toLowerCase()} · recheio ${recheio.toLowerCase()} · topo nº ${Number(topo)}`, preco: t.preco, qtd });
+      continue;
+    }
+    const extra = it.chave.endsWith('+extra');
+    const p = PRODUTOS.find((x) => x.id === it.chave.replace(/\+extra$/, ''));
+    if (!p || (extra && !p.extra)) continue;
+    ok.push({ chave: it.chave, id: p.id, nome: p.nome, img: foto(p.id), det: extra ? p.extra.rotulo : '',
+      preco: p.preco + (extra ? p.extra.preco : 0), qtd });
+  }
+  return ok;
+}
+sacola = revalidar(sacola);
 
 const salvar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(sacola)); } catch {} };
 const totalItens = () => sacola.reduce((s, it) => s + it.qtd, 0);
@@ -278,6 +304,7 @@ gaveta.addEventListener('click', (e) => {
   const b = e.target.closest('[data-mudar]');
   if (!b) return;
   const it = sacola.find((x) => x.chave === b.dataset.chave);
+  if (!it) return; // já removido (toque duplo)
   it.qtd += Number(b.dataset.mudar);
   if (it.qtd <= 0) sacola = sacola.filter((x) => x !== it);
   salvar(); pintarSacola();
@@ -294,7 +321,7 @@ function pintarSacola() {
     ? '<p class="vazia">Sua sacolinha está vazia.<br>Escolha uma delícia no cardápio.</p>'
     : sacola.map((it) => `
       <div class="item">
-        <img src="${it.img}" alt="">
+        <img src="${esc(it.img)}" alt="">
         <div><div class="item-nome">${esc(it.nome)}</div>${it.det ? `<div class="item-det">${esc(it.det)}</div>` : ''}</div>
         <div class="item-lado">
           <strong>${brl(it.preco * it.qtd)}</strong>
@@ -313,7 +340,7 @@ function pintarSacola() {
   $('#enviar').disabled = n === 0;
 }
 
-$('#form-pedido').addEventListener('submit', async (e) => {
+$('#form-pedido').addEventListener('submit', (e) => {
   e.preventDefault();
   if (!sacola.length) return;
   const f = e.target;
@@ -332,17 +359,21 @@ $('#form-pedido').addEventListener('submit', async (e) => {
   if (f.obs.value.trim()) linhas.push(`Observação: ${f.obs.value.trim()}`);
   const texto = linhas.join('\n');
 
+  // Abre na hora, ainda dentro do toque: se o navegador (ex.: o do Instagram) bloquear
+  // a nova aba, abre o WhatsApp na própria aba. A sacolinha fica salva para quando voltar.
+  const abrirWhats = (url) => {
+    const janela = window.open(url, '_blank');
+    if (janela) janela.opener = null; else location.href = url;
+  };
   if (WHATSAPP_NUMBER) {
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`, '_blank', 'noopener');
+    abrirWhats(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`);
     return;
   }
-  try {
-    await navigator.clipboard.writeText(texto);
-    avisar('Pedido copiado! Cole na conversa do WhatsApp.');
-  } catch {
-    avisar('Abra o WhatsApp e mande o seu pedido.');
-  }
-  setTimeout(() => window.open(WHATSAPP_LINK_CURTO, '_blank', 'noopener'), 900);
+  // sem número configurado: copia o pedido e abre a conversa pelo link curto
+  navigator.clipboard?.writeText(texto).then(
+    () => avisar('Pedido copiado! Cole na conversa do WhatsApp.'),
+    () => avisar('Abra o WhatsApp e mande o seu pedido.'));
+  abrirWhats(WHATSAPP_LINK_CURTO);
 });
 
 render();

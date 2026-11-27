@@ -163,7 +163,8 @@
   vigiarCards();
 
   // o filtro troca os cards: some junto e passa a vigiar os novos
-  new MutationObserver(() => {
+  new MutationObserver((mudancas) => {
+    for (const m of mudancas) m.removedNodes.forEach((n) => { if (n.nodeType === 1) { vigia.unobserve(n); proporcao.delete(n); } });
     if (alvo && !alvo.isConnected) desativar(true);
     vigiarCards();
   }).observe(grade, { childList: true });
