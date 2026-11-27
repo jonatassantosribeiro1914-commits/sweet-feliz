@@ -27,18 +27,349 @@
   <link rel="stylesheet" href="cardapio.css">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Bakery",
-    "name": "Sweet Feliz",
-    "description": "Bolos e doces artesanais no Campo Limpo, Zona Sul de São Paulo. Cardápio de Natal com encomendas até 18/12.",
-    "url": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/",
-    "telephone": "+5511979538491",
-    "servesCuisine": "Confeitaria",
-    "paymentAccepted": "Pix, dinheiro, cartão de crédito",
-    "sameAs": ["https://www.instagram.com/sweet_feliz/"],
-    "address": { "@type": "PostalAddress", "addressLocality": "São Paulo", "addressRegion": "SP", "streetAddress": "Campo Limpo, Zona Sul", "addressCountry": "BR" }
-  }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Bakery",
+      "@id": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/#confeitaria",
+      "name": "Sweet Feliz",
+      "url": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/",
+      "description": "Bolos e doces artesanais no Campo Limpo, Zona Sul de São Paulo. Cardápio de Natal com travessas, taças, pudim, pavê e bolo natalino. Encomendas até 18/12 pelo WhatsApp.",
+      "logo": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/logo.png",
+      "image": [
+        "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/og.jpg",
+        "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/logo.png"
+      ],
+      "telephone": "+55-11-97953-8491",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "São Paulo",
+        "addressRegion": "SP",
+        "addressCountry": "BR"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Campo Limpo, Zona Sul de São Paulo"
+      },
+      "servesCuisine": [
+        "Confeitaria",
+        "Sobremesas",
+        "Bolos artesanais"
+      ],
+      "paymentAccepted": "Pix, dinheiro, cartão de crédito",
+      "currenciesAccepted": "BRL",
+      "priceRange": "R$ 70 – R$ 280",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+55-11-97953-8491",
+        "contactType": "pedidos",
+        "availableLanguage": "pt-BR",
+        "url": "https://wa.me/5511979538491"
+      },
+      "sameAs": [
+        "https://www.instagram.com/sweet_feliz/"
+      ],
+      "hasMenu": {
+        "@id": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/#cardapio-natal"
+      }
+    },
+    {
+      "@type": "Menu",
+      "@id": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/#cardapio-natal",
+      "name": "Cardápio de Natal",
+      "url": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/#cardapio",
+      "inLanguage": "pt-BR",
+      "description": "Sobremesas de Natal feitas à mão. Encomendas até 18/12; somente retirada (23/12 até 22h ou 24/12 até 12h).",
+      "hasMenuSection": [
+        {
+          "@type": "MenuSection",
+          "name": "Travessas e tortas",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Maracujá Trufado",
+              "description": "Mousse delicioso de maracujá com ganache cremosa de chocolate.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/maracuja-trufado.webp",
+              "offers": {
+                "@type": "Offer",
+                "price": "90.00",
+                "priceCurrency": "BRL",
+                "availability": "https://schema.org/PreOrder",
+                "validThrough": "2026-12-18"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Torta de Limão",
+              "description": "Base crocante de biscoito, mousse cremoso de limão, chantininho e raspas de limão.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/torta-de-limao.webp",
+              "offers": {
+                "@type": "Offer",
+                "price": "90.00",
+                "priceCurrency": "BRL",
+                "availability": "https://schema.org/PreOrder",
+                "validThrough": "2026-12-18"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Travessa da Felicidade de Morango",
+              "description": "Morangos, brownie, creme de Ninho e ganache cremosa de brigadeiro.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/travessa-felicidade-morango.webp",
+              "offers": {
+                "@type": "Offer",
+                "price": "135.00",
+                "priceCurrency": "BRL",
+                "availability": "https://schema.org/PreOrder",
+                "validThrough": "2026-12-18"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Suprema de Brownie com Morango",
+              "description": "Brownie, morangos, brigadeiro de chocolate e de Ninho, chantininho e suspiro.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/suprema-brownie-morango.webp",
+              "offers": {
+                "@type": "Offer",
+                "price": "145.00",
+                "priceCurrency": "BRL",
+                "availability": "https://schema.org/PreOrder",
+                "validThrough": "2026-12-18"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Guirlanda de Brownie",
+              "description": "Brownie com cobertura de Ninho, finalizado com brigadeiros de chocolate, Ninho com Nutella e morangos frescos.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/guirlanda-de-brownie.webp",
+              "offers": {
+                "@type": "Offer",
+                "price": "125.00",
+                "priceCurrency": "BRL",
+                "availability": "https://schema.org/PreOrder",
+                "validThrough": "2026-12-18"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Bombom de Morango",
+              "description": "Brigadeiro branco cremoso, morangos frescos e ganache cremosa de chocolate.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/bombom-de-morango.webp",
+              "offers": {
+                "@type": "Offer",
+                "price": "120.00",
+                "priceCurrency": "BRL",
+                "availability": "https://schema.org/PreOrder",
+                "validThrough": "2026-12-18"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Bombom de Uva",
+              "description": "Brigadeiro branco cremoso, uvas frescas e ganache cremosa de chocolate.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/bombom-de-uva.webp",
+              "offers": {
+                "@type": "Offer",
+                "price": "120.00",
+                "priceCurrency": "BRL",
+                "availability": "https://schema.org/PreOrder",
+                "validThrough": "2026-12-18"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Pavê",
+              "description": "Camadas de creme branco delicioso, bolacha maisena e ganache de chocolate.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/pave.webp",
+              "offers": {
+                "@type": "Offer",
+                "price": "95.00",
+                "priceCurrency": "BRL",
+                "availability": "https://schema.org/PreOrder",
+                "validThrough": "2026-12-18"
+              },
+              "menuAddOn": {
+                "@type": "MenuItem",
+                "name": "Com bolacha champanhe",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "10.00",
+                  "priceCurrency": "BRL",
+                  "availability": "https://schema.org/PreOrder",
+                  "validThrough": "2026-12-18"
+                }
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Pudim Tradicional",
+              "description": "Pudim cremoso e irresistível, com uma deliciosa calda de caramelo.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/pudim-tradicional.webp",
+              "offers": {
+                "@type": "Offer",
+                "price": "70.00",
+                "priceCurrency": "BRL",
+                "availability": "https://schema.org/PreOrder",
+                "validThrough": "2026-12-18"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Taças",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Taça de Morango",
+              "description": "Brigadeiro branco cremoso, creme de Ninho, morangos frescos, brownie e ganache cremosa de chocolate.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/taca-de-morango.webp",
+              "offers": {
+                "@type": "Offer",
+                "price": "150.00",
+                "priceCurrency": "BRL",
+                "availability": "https://schema.org/PreOrder",
+                "validThrough": "2026-12-18"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Taça de Uva",
+              "description": "Brigadeiro branco cremoso, mousse de Ninho, brownie, uvas frescas e ganache cremosa de chocolate.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/taca-de-uva.webp",
+              "offers": {
+                "@type": "Offer",
+                "price": "150.00",
+                "priceCurrency": "BRL",
+                "availability": "https://schema.org/PreOrder",
+                "validThrough": "2026-12-18"
+              }
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Taça de Maracujá",
+              "description": "Mousse de maracujá, brownie, ganache cremosa de chocolate e brigadeiros.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/taca-de-maracuja.webp",
+              "offers": {
+                "@type": "Offer",
+                "price": "160.00",
+                "priceCurrency": "BRL",
+                "availability": "https://schema.org/PreOrder",
+                "validThrough": "2026-12-18"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Bolo natalino",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Bolo Natalino",
+              "description": "Massa branca ou de chocolate, com o recheio que você escolher. O topo de Natal já está incluso. Recheios: Prestígio, Dois amores, Brigadeiro, Ninho.",
+              "image": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/assets/cardapio/produtos/bolo-natalino-1.webp",
+              "offers": [
+                {
+                  "@type": "Offer",
+                  "price": "130.00",
+                  "priceCurrency": "BRL",
+                  "availability": "https://schema.org/PreOrder",
+                  "validThrough": "2026-12-18",
+                  "name": "Bolo Natalino P",
+                  "description": "Serve 8 a 10 pessoas"
+                },
+                {
+                  "@type": "Offer",
+                  "price": "210.00",
+                  "priceCurrency": "BRL",
+                  "availability": "https://schema.org/PreOrder",
+                  "validThrough": "2026-12-18",
+                  "name": "Bolo Natalino M",
+                  "description": "Serve 15 a 20 pessoas"
+                },
+                {
+                  "@type": "Offer",
+                  "price": "280.00",
+                  "priceCurrency": "BRL",
+                  "availability": "https://schema.org/PreOrder",
+                  "validThrough": "2026-12-18",
+                  "name": "Bolo Natalino G",
+                  "description": "Serve 25 a 30 pessoas"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/#duvidas",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Vocês entregam?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não, é somente retirada. Se preferir motorista por aplicativo, ele precisa ser chamado por você. A Sweet Feliz não se responsabiliza por entregas feitas pelo aplicativo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Até quando posso encomendar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Até 18/12, ou antes, se as vagas acabarem. As encomendas de Natal são limitadas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso pagar no cartão?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pode. Enviamos um link de pagamento com o acréscimo da taxa da maquininha. Também aceitamos Pix e dinheiro."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "E se eu precisar cancelar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O sinal de 50% não é reembolsado em caso de cancelamento. Sem o sinal, o pedido fica apenas como orçamento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como conservo a sobremesa até a ceia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mantenha na geladeira até a hora de servir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O doce vem igual à foto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As fotos são ilustrativas. Como a produção é toda artesanal, a decoração pode ter pequenas variações."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/#site",
+      "name": "Sweet Feliz",
+      "url": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/",
+      "inLanguage": "pt-BR",
+      "publisher": {
+        "@id": "https://jonatassantosribeiro1914-commits.github.io/sweet-feliz/#confeitaria"
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>
