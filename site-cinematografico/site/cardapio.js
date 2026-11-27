@@ -6,9 +6,9 @@ const WHATSAPP_LINK_CURTO = 'https://wa.me/message/5YUTZFNBVAWVB1';
 
 const PRODUTOS = [
   { id: 'maracuja-trufado', cat: 'travessas', nome: 'Maracujá Trufado', preco: 90,
-    desc: 'Mousse delicioso de maracujá com ganache cremosa de chocolate.' },
+    desc: 'Mousse de maracujá com ganache cremosa de chocolate.' },
   { id: 'torta-de-limao', cat: 'travessas', nome: 'Torta de Limão', preco: 90,
-    desc: 'Base crocante de biscoito, mousse cremoso de limão, chantininho e raspas de limão.' },
+    desc: 'Base crocante de biscoito, mousse de limão, chantininho e raspas de limão.' },
   { id: 'travessa-felicidade-morango', cat: 'travessas', nome: 'Travessa da Felicidade de Morango', preco: 135,
     desc: 'Morangos, brownie, creme de Ninho e ganache cremosa de brigadeiro.' },
   { id: 'suprema-brownie-morango', cat: 'travessas', nome: 'Suprema de Brownie com Morango', preco: 145,
@@ -16,25 +16,25 @@ const PRODUTOS = [
   { id: 'guirlanda-de-brownie', cat: 'travessas', nome: 'Guirlanda de Brownie', preco: 125,
     desc: 'Brownie com cobertura de Ninho, finalizado com brigadeiros de chocolate, Ninho com Nutella e morangos frescos.' },
   { id: 'bombom-de-morango', cat: 'travessas', nome: 'Bombom de Morango', preco: 120,
-    desc: 'Brigadeiro branco cremoso, morangos frescos e ganache cremosa de chocolate.' },
+    desc: 'Brigadeiro branco, morangos frescos e ganache cremosa de chocolate.' },
   { id: 'bombom-de-uva', cat: 'travessas', nome: 'Bombom de Uva', preco: 120,
-    desc: 'Brigadeiro branco cremoso, uvas frescas e ganache cremosa de chocolate.' },
+    desc: 'Brigadeiro branco, uvas frescas e ganache cremosa de chocolate.' },
   { id: 'pave', cat: 'travessas', nome: 'Pavê', preco: 95,
-    desc: 'Camadas de creme branco delicioso, bolacha maisena e ganache de chocolate.',
+    desc: 'Camadas de creme branco, bolacha maisena e ganache de chocolate.',
     extra: { rotulo: 'Com bolacha champanhe', preco: 10 } },
   { id: 'pudim-tradicional', cat: 'travessas', nome: 'Pudim Tradicional', preco: 70,
-    desc: 'Pudim cremoso e irresistível, com uma deliciosa calda de caramelo.' },
+    desc: 'Pudim cremoso com calda de caramelo.' },
   { id: 'taca-de-morango', cat: 'tacas', nome: 'Taça de Morango', preco: 150,
-    desc: 'Brigadeiro branco cremoso, creme de Ninho, morangos frescos, brownie e ganache cremosa de chocolate.' },
+    desc: 'Brigadeiro branco, creme de Ninho, morangos frescos, brownie e ganache cremosa de chocolate.' },
   { id: 'taca-de-uva', cat: 'tacas', nome: 'Taça de Uva', preco: 150,
-    desc: 'Brigadeiro branco cremoso, mousse de Ninho, brownie, uvas frescas e ganache cremosa de chocolate.' },
+    desc: 'Brigadeiro branco, mousse de Ninho, brownie, uvas frescas e ganache cremosa de chocolate.' },
   { id: 'taca-de-maracuja', cat: 'tacas', nome: 'Taça de Maracujá', preco: 160,
     desc: 'Mousse de maracujá, brownie, ganache cremosa de chocolate e brigadeiros.' },
 ];
 
 const BOLO = {
   id: 'bolo-natalino', cat: 'bolo', nome: 'Bolo Natalino',
-  desc: 'Massa branca ou de chocolate, com o recheio que você escolher. O topo de Natal já está incluso.',
+  desc: 'Massa branca ou de chocolate e o recheio da sua escolha. O topo de Natal já vem incluso.',
   fotos: ['bolo-natalino-1', 'bolo-natalino-2'],
   tamanhos: [
     { id: 'P', serve: '8 a 10 pessoas', preco: 130 },
@@ -325,7 +325,7 @@ function pintarSacola() {
   $('#abrir-sacola').setAttribute('aria-label', `Abrir sacolinha, ${n} ${n === 1 ? 'item' : 'itens'}`);
 
   $('#itens').innerHTML = n === 0
-    ? '<p class="vazia">Sua sacolinha está vazia.<br>Escolha uma delícia no cardápio.</p>'
+    ? '<p class="vazia">Sua sacolinha está vazia.<br>Escolha um doce no cardápio para começar.</p>'
     : sacola.map((it) => `
       <div class="item">
         <img src="${esc(it.img)}" alt="">
@@ -356,7 +356,7 @@ function conferirHora() {
   const hora = formPedido.hora;
   const max = dia ? limiteHora(dia.value) : '';
   hora.max = max;
-  hora.setCustomValidity(max && hora.value && hora.value > max ? `Neste dia a retirada é até ${max.replace(':00', 'h')}.` : '');
+  hora.setCustomValidity(max && hora.value && hora.value > max ? `Nesse dia, a retirada vai até as ${max.replace(':00', 'h')}.` : '');
 }
 formPedido.addEventListener('change', conferirHora);
 formPedido.addEventListener('input', conferirHora);
@@ -370,7 +370,7 @@ $('#form-pedido').addEventListener('submit', (e) => {
   const f = e.target;
   const total = totalValor();
   const linhas = [
-    'Olá, Sweet Feliz! Quero fazer uma encomenda do Cardápio de Natal:',
+    'Olá, Sweet Feliz! Gostaria de fazer uma encomenda do Cardápio de Natal:',
     '',
     ...sacola.map((it) => `• ${it.qtd}x ${it.nome}${it.det ? ` (${it.det})` : ''} — ${brl(it.preco * it.qtd)}`),
     '',
