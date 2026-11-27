@@ -304,3 +304,6 @@ html:not(.js) .sacola-botao { display: none; }
   .sacola-contador { min-width: 20px; height: 20px; font-size: 11px; top: -4px; right: -4px; }
 }
 .chip { min-height: 44px; }
+
+/* Aviso de encomendas encerradas (aparece na sacolinha depois do prazo) */
+.gaveta-encerrado { margin: 0; padding: 10px 12px; border-radius: 10px; background: #F6E3E3; color: var(--c-rosa-escuro) !important; font-size: 14px; font-weight: 600; text-align: center; }

@@ -256,6 +256,11 @@ function ligarForm(montar) {
   atualizar();
 }
 
+/* ---------- prazo e horário de retirada (config.js → encomendas) ---------- */
+const ENCOMENDAS = (window.SITE && window.SITE.encomendas) || {};
+const encerrado = () => !!ENCOMENDAS.prazo && Date.now() > Date.parse(ENCOMENDAS.prazo);
+const limiteHora = (dia) => (ENCOMENDAS.retiradaAte || {})[dia] || '';
+
 /* ---------- sacolinha ---------- */
 const CHAVE = 'sweetfeliz-sacola-natal';
 let sacola = [];
@@ -337,12 +342,29 @@ function pintarSacola() {
   $('#totais').innerHTML = `
     <div class="total"><span>Total</span><span>${brl(total)}</span></div>
     <div class="sinal"><span>Sinal de 50% para confirmar</span><span>${brl(total / 2)}</span></div>`;
-  $('#enviar').disabled = n === 0;
+  const fechou = encerrado();
+  $('#enviar').disabled = n === 0 || fechou;
+  $('#encerrado').hidden = !fechou;
 }
+
+// O horário escolhido precisa caber na retirada do dia (23/12 até 22h, 24/12 até 12h)
+const formPedido = $('#form-pedido');
+function conferirHora() {
+  const dia = formPedido.querySelector('input[name=dia]:checked');
+  const hora = formPedido.hora;
+  const max = dia ? limiteHora(dia.value) : '';
+  hora.max = max;
+  hora.setCustomValidity(max && hora.value && hora.value > max ? `Neste dia a retirada é até ${max.replace(':00', 'h')}.` : '');
+}
+formPedido.addEventListener('change', conferirHora);
+formPedido.addEventListener('input', conferirHora);
 
 $('#form-pedido').addEventListener('submit', (e) => {
   e.preventDefault();
   if (!sacola.length) return;
+  if (encerrado()) { pintarSacola(); return; } // passou do prazo com a página aberta
+  conferirHora();
+  if (!formPedido.reportValidity()) return;
   const f = e.target;
   const total = totalValor();
   const linhas = [

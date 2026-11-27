@@ -18,4 +18,11 @@ window.SITE = {
 
   // Rolagem macia (Lenis) no computador. false = rolagem nativa do navegador.
   rolagemSuave: true,
+
+  // Encomendas de Natal: prazo final (horário de Brasília) e limite de horário de cada dia de retirada.
+  // Para o próximo Natal, troque o ano/datas aqui (e os textos do cardápio).
+  encomendas: {
+    prazo: "2026-12-18T23:59:59-03:00",
+    retiradaAte: { "23/12 (até 22h)": "22:00", "24/12 (até 12h)": "12:00" },
+  },
 };
