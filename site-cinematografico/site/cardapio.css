@@ -261,7 +261,7 @@ html:not(.js) .sacola-botao { display: none; }
 .noel-figura {
   position: absolute; width: var(--larg); aspect-ratio: 351 / 210;
   left: calc(var(--larg) / -2); top: calc(var(--larg) * -0.299);
-  filter: drop-shadow(0 3px 4px rgba(120, 60, 40, .25));
+  /* sem filter de sombra: recalcular a sombra a cada quadro travava a rolagem no celular */
 }
 .noel-camada.ativa .noel-figura { animation: noel-entrar .5s cubic-bezier(.3, 1.6, .5, 1) both; }
 @keyframes noel-entrar { from { transform: scale(0); } to { transform: none; } }

@@ -424,3 +424,10 @@ body, .secao {
 .abertura-cta:hover { transform: translate(-50%, -2px); }
 /* Visível só para leitores de tela e buscadores */
 .so-leitor { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Celular: efeitos caros de redesenhar durante a rolagem saem (diferença visual mínima) */
+@media (max-width: 860px) {
+  body::after { display: none; }
+  .topo.rolou { -webkit-backdrop-filter: none; backdrop-filter: none; background: color-mix(in srgb, var(--fundo) 94%, transparent); }
+  .painel { -webkit-backdrop-filter: none; backdrop-filter: none; background: color-mix(in srgb, var(--fundo) 90%, transparent); }
+}

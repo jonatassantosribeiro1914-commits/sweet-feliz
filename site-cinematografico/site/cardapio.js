@@ -72,7 +72,7 @@ let filtro = 'todas';
 function cardProduto(p, i) {
   return `<li class="card" style="--i:${i}">
     <button class="card-botao" type="button" data-abrir="${p.id}">
-      <img class="card-foto" src="${foto(p.id)}" alt="" loading="lazy" width="400" height="500">
+      <img class="card-foto" src="${foto(p.id)}" alt="" loading="lazy" decoding="async" width="400" height="500">
       <span class="card-nome">${p.nome}</span>
       <span class="card-desc">${p.desc}</span>
       <span class="preco">${brl(p.preco)}</span>
@@ -81,7 +81,7 @@ function cardProduto(p, i) {
 function cardBolo(i) {
   return `<li class="card card-destaque" style="--i:${i}">
     <button class="card-botao" type="button" data-abrir="bolo-natalino">
-      <span class="card-fotos">${BOLO.fotos.map((f) => `<img class="card-foto" src="${foto(f)}" alt="" loading="lazy" width="400" height="500">`).join('')}</span>
+      <span class="card-fotos">${BOLO.fotos.map((f) => `<img class="card-foto" src="${foto(f)}" alt="" loading="lazy" decoding="async" width="400" height="500">`).join('')}</span>
       <span class="card-info">
         <span class="rotulo">Topo incluso</span>
         <span class="card-nome">${BOLO.nome}</span>
@@ -93,7 +93,7 @@ function cardBolo(i) {
 function cardTopo(n, i) {
   return `<li class="card card-topo" style="--i:${i}">
     <button class="card-botao" type="button" data-abrir="bolo-natalino" data-topo="${n}">
-      <img class="card-foto" src="${fotoTopo(n)}" alt="Topo de bolo de Natal nº ${Number(n)}" loading="lazy" width="320" height="320">
+      <img class="card-foto" src="${fotoTopo(n)}" alt="Topo de bolo de Natal nº ${Number(n)}" loading="lazy" decoding="async" width="320" height="320">
       <span class="card-nome">Topo nº ${Number(n)}</span>
     </button></li>`;
 }
@@ -206,7 +206,7 @@ function abrirBolo(topoInicial) {
         ${pilulas('recheio', BOLO.recheios.map((r) => ({ valor: r, texto: r })), 0)}
       </div></fieldset>
       <fieldset class="grupo"><legend>Topo</legend><div class="topos-escolha">
-        ${TOPOS.map((n) => `<label class="topo-op"><input type="radio" name="topo" value="${n}" ${n === (topoInicial || '01') ? 'checked' : ''} aria-label="Topo nº ${Number(n)}"><img src="${fotoTopo(n)}" alt="" loading="lazy"></label>`).join('')}
+        ${TOPOS.map((n) => `<label class="topo-op"><input type="radio" name="topo" value="${n}" ${n === (topoInicial || '01') ? 'checked' : ''} aria-label="Topo nº ${Number(n)}"><img src="${fotoTopo(n)}" alt="" loading="lazy" decoding="async"></label>`).join('')}
       </div></fieldset>
       ${controleQtd()}
     </form>`;

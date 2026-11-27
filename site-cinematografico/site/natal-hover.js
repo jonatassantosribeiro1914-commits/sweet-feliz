@@ -34,6 +34,9 @@
   const rastro = camada.querySelector('.noel-rastro');
   const veiculo = camada.querySelector('.noel-veiculo');
   const figura = camada.querySelector('.noel-figura');
+  // prepara (decodifica) as 4 peças do trenó com antecedência, para a 1ª volta não travar a rolagem
+  const preparar = () => camada.querySelectorAll('img').forEach((i) => i.decode && i.decode().catch(() => {}));
+  (window.requestIdleCallback || ((f) => setTimeout(f, 1200)))(preparar);
 
   let alvo = null, w = 0, h = 0, s = 0, ultimo = 0, raf = 0, ultimaEstrela = 0, umaVolta = false;
 
