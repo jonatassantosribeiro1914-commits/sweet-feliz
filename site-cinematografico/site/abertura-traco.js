@@ -8,8 +8,8 @@
   if (!svg) return;
   const reduzir = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const DURACAO = 8000;   // ms do "vídeo" inteiro
-  const ESPERA = 500;     // ms depois que a tela de entrada some
+  const DURACAO = 5500;   // ms do "vídeo" inteiro
+  const ESPERA = 250;     // ms depois que a tela de entrada some
 
   const animados = [...svg.querySelectorAll('[data-de]')].map((el) => ({
     el, de: parseFloat(el.dataset.de), ate: parseFloat(el.dataset.ate),
@@ -57,7 +57,7 @@
     if (iniciado) return;
     iniciado = true;
     const fontes = document.fonts ? document.fonts.ready : Promise.resolve();
-    Promise.race([fontes, new Promise((r) => setTimeout(r, 1500))])
+    Promise.race([fontes, new Promise((r) => setTimeout(r, 800))])
       .then(() => setTimeout(() => requestAnimationFrame(quadro), ESPERA));
   };
   if (raiz.classList.contains('pronto')) comecar();
