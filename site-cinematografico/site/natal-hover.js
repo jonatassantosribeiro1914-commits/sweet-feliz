@@ -23,11 +23,11 @@
     <div class="noel-rastro"></div>
     <div class="noel-veiculo">
       <div class="noel-figura">
-        <img class="noel-peca noel-treno" src="assets/natal/noel.png" alt="" width="351" height="210">
+        <img class="noel-peca noel-treno" src="assets/natal/noel.webp" alt="" width="351" height="210">
         <div class="noel-peca noel-rena">
-          <img class="noel-peca rena-tras" src="assets/natal/rena-tras.png" alt="" width="351" height="210">
-          <img class="noel-peca rena-frente" src="assets/natal/rena-frente.png" alt="" width="351" height="210">
-          <img class="noel-peca" src="assets/natal/rena-corpo.png" alt="" width="351" height="210">
+          <img class="noel-peca rena-tras" src="assets/natal/rena-tras.webp" alt="" width="351" height="210">
+          <img class="noel-peca rena-frente" src="assets/natal/rena-frente.webp" alt="" width="351" height="210">
+          <img class="noel-peca" src="assets/natal/rena-corpo.webp" alt="" width="351" height="210">
         </div>
       </div>
     </div>`;

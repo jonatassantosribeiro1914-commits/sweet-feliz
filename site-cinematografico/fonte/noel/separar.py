@@ -38,6 +38,7 @@ for nome, cond in (("rena", lambda i: rena[i]), ("noel", lambda i: escuro[i] and
     out = out.crop((x0, y0, x1, y1))
     out = out.resize((out.width // 3, out.height // 3), Image.LANCZOS)  # ~350 px: nítido no tamanho do site (2x)
     out.save(f"{nome}.png")
+    out.save(f"{nome}.webp", "WEBP", lossless=True, method=6)  # o site usa a versão WebP
     print(nome, out.size)
 
 # ---- Patas da rena em peças próprias (para galopar) -------------------------------
@@ -67,6 +68,7 @@ for nome, cond in pecas.items():
     out = out.crop((x0, y0, x1, y1))
     out = out.resize((out.width // 3, out.height // 3), Image.LANCZOS)
     out.save(f"{nome}.png")
+    out.save(f"{nome}.webp", "WEBP", lossless=True, method=6)  # o site usa a versão WebP
     print(nome, out.size)
 # pivôs em % do quadro (para o CSS): ombro e quadril
 qw, qh = x1 - x0, y1 - y0
