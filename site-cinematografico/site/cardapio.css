@@ -252,9 +252,9 @@ html:not(.js) .sacola-botao { display: none; }
 @keyframes noel-entrar { from { transform: scale(0); } to { transform: none; } }
 .noel-peca { position: absolute; inset: 0; width: 100%; height: 100%; }
 /* rena correndo: o corpo sobe e desce e as patas abrem e fecham alternadas (galope) */
-.noel-rena { transform-origin: 66% 52%; animation: rena-galope .36s ease-in-out infinite alternate; }
-.rena-frente { transform-origin: 92.4% 60.3%; animation: pata-frente .36s ease-in-out infinite alternate; }
-.rena-tras { transform-origin: 63.5% 65.1%; animation: pata-tras .36s ease-in-out infinite alternate; }
+.noel-rena { transform-origin: 66% 52%; animation: rena-galope .28s ease-in-out infinite alternate; }
+.rena-frente { transform-origin: 92.4% 60.3%; animation: pata-frente .28s ease-in-out infinite alternate; }
+.rena-tras { transform-origin: 63.5% 65.1%; animation: pata-tras .28s ease-in-out infinite alternate; }
 @keyframes pata-frente { from { transform: rotate(-24deg); } to { transform: rotate(22deg); } }
 @keyframes pata-tras { from { transform: rotate(-20deg); } to { transform: rotate(26deg); } }
 @keyframes rena-galope {
@@ -262,7 +262,7 @@ html:not(.js) .sacola-botao { display: none; }
   to { transform: rotate(4deg) translateY(-4px); }
 }
 /* Papai Noel guiando: balanço leve do trenó */
-.noel-treno { transform-origin: 28% 92%; animation: noel-guiar .9s ease-in-out infinite alternate; }
+.noel-treno { transform-origin: 28% 92%; animation: noel-guiar .7s ease-in-out infinite alternate; }
 @keyframes noel-guiar {
   from { transform: rotate(-1.6deg) translateY(1px); }
   to { transform: rotate(1.4deg) translateY(-2px); }

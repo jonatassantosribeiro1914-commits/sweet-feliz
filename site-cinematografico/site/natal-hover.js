@@ -12,7 +12,7 @@
 
   const RAIO = 22;
   // computador × celular: distância da borda, velocidade (px/s) e largura da figura (px)
-  const AJUSTE = { mouse: { pad: 14, vel: 260, larg: 105 }, toque: { pad: -6, vel: 320, larg: 74 } }; // celular: rente à borda do card (a margem da tela é estreita)
+  const AJUSTE = { mouse: { pad: 14, vel: 360, larg: 105 }, toque: { pad: -6, vel: 450, larg: 74 } }; // celular: rente à borda do card (a margem da tela é estreita)
   let PAD = 14, VELOCIDADE = 260, LARGURA = 105;
 
   // Camada única que "pula" para o card ativo. As duas peças têm o mesmo quadro e ficam sobrepostas.
@@ -63,7 +63,7 @@
 
   // estrela que nasce atrás do trenó, brilha e some
   function estrela(x, y, ang) {
-    if (rastro.childElementCount > 45) return;
+    if (rastro.childElementCount > 60) return;
     const e = document.createElement('i');
     const rad = ang * Math.PI / 180;
     const atras = LARGURA * 0.46 + Math.random() * 18;
@@ -85,7 +85,7 @@
     // indo para a esquerda: espelha para o Papai Noel não ficar de cabeça para baixo
     const vira = Math.cos(ang * Math.PI / 180) < -0.01 ? ' scaleY(-1)' : '';
     veiculo.style.transform = `translate(${x}px, ${y}px) rotate(${ang}deg)${vira}`;
-    if (t - ultimaEstrela > 55) { estrela(x, y, ang); ultimaEstrela = t; }
+    if (t - ultimaEstrela > 40) { estrela(x, y, ang); ultimaEstrela = t; }
     raf = requestAnimationFrame(quadro);
   }
 
