@@ -155,9 +155,9 @@ modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); 
 function controleQtd() {
   return `<div class="adicionar">
     <div class="qtd" role="group" aria-label="Quantidade">
-      <button type="button" data-q="-1" aria-label="Diminuir">−</button>
+      <button type="button" data-q="-1" aria-label="Diminuir quantidade">−</button>
       <output aria-live="polite">1</output>
-      <button type="button" data-q="1" aria-label="Aumentar">+</button>
+      <button type="button" data-q="1" aria-label="Aumentar quantidade">+</button>
     </div>
     <button class="cbotao cbotao-primario" type="submit">Adicionar · <span data-total></span></button>
   </div>`;
@@ -193,7 +193,7 @@ function abrirBolo(topoInicial) {
     <label class="opcao-pilula"><input type="radio" name="${nome}" value="${it.valor}" ${k === marcar ? 'checked' : ''} required>
     <span>${it.texto}</span></label>`).join('');
   corpo.innerHTML = `
-    <div class="modal-midia"><div class="galeria-bolo"><img class="galeria-principal" src="${foto(BOLO.fotos[0])}" alt="Bolo natalino decorado, modelo 1" width="300" height="400"><div class="galeria-miniaturas" role="group" aria-label="Escolher foto">${BOLO.fotos.map((f, k) => `<button type="button" class="miniatura" data-foto="${foto(f)}" aria-label="Ver bolo modelo ${k + 1}" aria-pressed="${k === 0}"><img src="${foto(f)}" alt=""></button>`).join('')}</div></div></div>
+    <div class="modal-midia"><div class="galeria-bolo"><img class="galeria-principal" src="${foto(BOLO.fotos[0])}" alt="Bolo natalino decorado, modelo 1" width="300" height="400"><div class="galeria-miniaturas" role="group" aria-label="Escolher foto">${BOLO.fotos.map((f, k) => `<button type="button" class="miniatura" data-foto="${foto(f)}" aria-label="Ver foto do bolo, modelo ${k + 1}" aria-pressed="${k === 0}"><img src="${foto(f)}" alt=""></button>`).join('')}</div></div></div>
     <form class="modal-info" id="form-item">
       <p class="rotulo">Topo incluso</p>
       <h2 id="modal-titulo">${BOLO.nome}</h2>
@@ -249,9 +249,10 @@ function ligarForm(montar) {
   f.addEventListener('change', atualizar);
   f.addEventListener('submit', (e) => {
     e.preventDefault();
-    adicionar(montar(), qtd);
+    const item = montar();
+    adicionar(item, qtd);
     modal.close();
-    avisar('Adicionado à sacolinha');
+    avisar(`${item.nome} está na sacolinha`);
     const sb = $('#abrir-sacola');
     sb.classList.remove('pulo'); void sb.offsetWidth; sb.classList.add('pulo');
   });
@@ -333,9 +334,9 @@ function pintarSacola() {
         <div class="item-lado">
           <strong>${brl(it.preco * it.qtd)}</strong>
           <div class="item-qtd">
-            <button type="button" data-mudar="-1" data-chave="${esc(it.chave)}" aria-label="Remover um ${esc(it.nome)}">−</button>
+            <button type="button" data-mudar="-1" data-chave="${esc(it.chave)}" aria-label="Diminuir quantidade de ${esc(it.nome)}">−</button>
             <span>${it.qtd}</span>
-            <button type="button" data-mudar="1" data-chave="${esc(it.chave)}" aria-label="Adicionar um ${esc(it.nome)}">+</button>
+            <button type="button" data-mudar="1" data-chave="${esc(it.chave)}" aria-label="Aumentar quantidade de ${esc(it.nome)}">+</button>
           </div>
         </div>
       </div>`).join('');
@@ -360,6 +361,17 @@ function conferirHora() {
 }
 formPedido.addEventListener('change', conferirHora);
 formPedido.addEventListener('input', conferirHora);
+
+// Avisos claros (no lugar do genérico "Preencha este campo") para os campos obrigatórios
+const avisosCampo = [
+  [formPedido.nome, 'Informe seu nome para identificarmos o pedido.'],
+  [formPedido.querySelector('input[name=dia]'), 'Escolha o dia da retirada: 23/12 ou 24/12.'],
+];
+for (const [campo, msg] of avisosCampo) {
+  campo.addEventListener('invalid', () => { if (campo.validity.valueMissing) campo.setCustomValidity(msg); });
+}
+formPedido.addEventListener('input', () => avisosCampo.forEach(([c]) => c.setCustomValidity('')), true);
+formPedido.addEventListener('change', () => avisosCampo.forEach(([c]) => c.setCustomValidity('')), true);
 
 $('#form-pedido').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -396,7 +408,7 @@ $('#form-pedido').addEventListener('submit', (e) => {
   // sem número configurado: copia o pedido e abre a conversa pelo link curto
   navigator.clipboard?.writeText(texto).then(
     () => avisar('Pedido copiado! Cole na conversa do WhatsApp.'),
-    () => avisar('Abra o WhatsApp e mande o seu pedido.'));
+    () => avisar('Abra o WhatsApp e envie o seu pedido.'));
   abrirWhats(WHATSAPP_LINK_CURTO);
 });
 
